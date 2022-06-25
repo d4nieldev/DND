@@ -45,7 +45,7 @@ public class Board {
         for (int i = 0; i < tiles.size(); i++){
             if (i != 0 && i % maxCol == 0)
                 output += "\n";
-            output += tiles.get(i).toString();
+            output += tiles.get(i).getTile();
         }
         return output;
     }

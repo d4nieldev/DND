@@ -21,10 +21,6 @@ public abstract class Tile implements Visited, Comparable<Tile> {
         return tile;
     }
 
-    public String toString(){
-        return ""+tile;
-    }
-
     public int getX(){
         return position.getX();
     }

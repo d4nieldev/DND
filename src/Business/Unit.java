@@ -15,6 +15,10 @@ public abstract class Unit extends Tile implements Visitor {
         this.defense_pts = defense_pts;
     }
 
+    public String getName(){
+        return this.name;
+    }
+
     protected int attack(){
         // TODO: implement this method
         return -1;

@@ -56,7 +56,7 @@ public class TileFactory {
         );
     }
 
-    public List<Player> listPlayers(){
+    public List<Player> listPlayers() {
         return players.stream().map(Supplier::get).collect(Collectors.toList());
     }
 
