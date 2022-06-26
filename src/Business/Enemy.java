@@ -10,44 +10,24 @@ public abstract class Enemy extends Unit{
 
     @Override
     public void accept(Unit unit) {
-        // TODO: implement this method
-    }
-
-    @Override
-    public void processStep() {
-        // TODO: implement this method
-    }
-
-    @Override
-    public void onDeath() {
-        // TODO: implement this method
+        unit.visit(this);
     }
 
     @Override
     public void visit(Player player) {
-        // TODO: implement this method
+        battle(player);
     }
 
     @Override
     public void visit(Enemy enemy) {
-        // TODO: implement this method
+        // do nothing
     }
 
-    @Override
-    public void visit(EmptyTile emptyTile) {
-        // TODO: implement this method
+    public void onDeath(Player player){
+        player.addExperience(experienceValue);
+        // TODO: remove enemy from board
+        // TODO: replace player position with this position
     }
 
-    @Override
-    public void visit(Wall wall) {
-        // TODO: implement this method
-    }
-
-    public boolean isPlayer(){
-        return false;
-    }
-
-    public boolean isEnemy(){
-        return true;
-    }
+    public abstract void processStep(Player player);
 }

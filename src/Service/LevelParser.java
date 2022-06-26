@@ -34,8 +34,10 @@ public class LevelParser {
                                 tiles[row][col] = player;
                                 initialPlayerPosition = new Position(col, row);
                             }
-                            else
+                            else {
                                 tiles[row][col] = tf.produceTile(line.charAt(col));
+                                tiles[row][col].initialize(new Position(col, row));
+                            }
                         }
                         row++;
                     }
