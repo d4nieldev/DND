@@ -55,7 +55,8 @@ public class LevelManager {
                     break;
             }
 
-            // TODO: enemy move
+            for (Enemy e : enemyList)
+                e.processStep(player);
 
         }
     }
