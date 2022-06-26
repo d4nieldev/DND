@@ -7,8 +7,7 @@ public class Wall extends Tile{
         // TODO: complete this constructor
     }
 
-    @Override
     public void accept(Unit unit) {
-
+        unit.visit(this);
     }
 }

@@ -9,14 +9,14 @@ public class Rogue extends Player{
     }
 
     @Override
-    protected void levelUp() {
-        // TODO: implement this method
-    }
-    @Override
     public String describe(){
         return super.describe() + String.format("\t\tEnergy: %s ", ability);
     }
 
+    @Override
+    protected void levelUp() {
+        // TODO: implement this method
+    }
 
     @Override
     public void abilityCast(List<Enemy> enemies) {

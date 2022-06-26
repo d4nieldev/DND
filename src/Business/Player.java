@@ -36,16 +36,10 @@ public abstract class Player extends Unit{
             levelUp();
     }
 
-    @Override
-    public void accept(Unit u) {
-        u.visit(this);
-    }
-
     protected void battle(Enemy enemy){
         super.battle(enemy);
         if(enemy.isDead())
             enemy.onDeath(this);
-
     }
 
     public void visit(Player player){
@@ -56,13 +50,18 @@ public abstract class Player extends Unit{
         battle(enemy);
     }
 
+    public void abilityCast(List<Enemy> enemyList){
+        if(!ability.canCastAbility())
+            messageCallback.send(String.format("%s tried to cast %s, but there was not enough %s: %s ", getName(), ability.getName(), ability.getResourceName(), ability));
+    }
+
     @Override
     public String describe(){
         return super.describe() + String.format("\t\tLevel: %d\t\tExperience: %d/%d", level, experience, 50 * level);
     }
 
-    public void abilityCast(List<Enemy> enemies){
-        if(!ability.canCastAbility())
-            messageCallback.send(String.format("%s tried to cast %s, but there was not enough %s: %s ", getName(), ability.getName(), ability.getResourceName(), ability));
+    @Override
+    public void accept(Unit u) {
+        u.visit(this);
     }
 }

@@ -8,6 +8,12 @@ public abstract class Enemy extends Unit{
         this.experienceValue = experienceValue;
     }
 
+    public void onDeath(Player player){
+        player.addExperience(experienceValue);
+        // TODO: remove enemy from board
+        // TODO: replace player position with this position
+    }
+
     @Override
     public void accept(Unit unit) {
         unit.visit(this);
@@ -20,12 +26,6 @@ public abstract class Enemy extends Unit{
 
     @Override
     public void visit(Enemy enemy) { }
-
-    public void onDeath(Player player){
-        player.addExperience(experienceValue);
-        // TODO: remove enemy from board
-        // TODO: replace player position with this position
-    }
 
     public abstract void processStep(Player player);
 }

@@ -27,7 +27,7 @@ public class Board {
         throw new NoSuchElementException("No such tile with the position (" + x + ", " + y + ")");
     }
 
-    public void remove(Tile e){
+    public void remove(Enemy e){
         EmptyTile emptyTile = new EmptyTile();
         emptyTile.initialize(e.position);
         tiles.set(tiles.indexOf(e), emptyTile);

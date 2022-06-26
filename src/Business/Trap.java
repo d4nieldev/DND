@@ -31,22 +31,10 @@ public class Trap extends Enemy{
     }
 
     @Override
-    public void visit(Player player) {
-
-    }
-
-    @Override
-    public void visit(Enemy enemy) {
-
-    }
-
-    @Override
-    public void visit(EmptyTile emptyTile) {
-
-    }
-
-    @Override
-    public void visit(Wall wall) {
-
+    public char getTile(){
+        if (visible)
+            return tile;
+        else
+            return '.';
     }
 }

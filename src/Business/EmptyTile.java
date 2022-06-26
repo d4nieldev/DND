@@ -6,7 +6,6 @@ public class EmptyTile extends Tile {
         super('.');
     }
 
-    @Override
     public void accept(Unit unit) {
         unit.visit(this);
     }
