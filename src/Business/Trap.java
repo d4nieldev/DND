@@ -10,13 +10,19 @@ public class Trap extends Enemy{
         super(tile, name, health_pool, attack_pts, defense_pts, experienceValue);
         this.visibilityTime = visibilityTime;
         this.invisibilityTime = invisibilityTime;
-        this. ticksCount = 0;
-        this. visible = true;
+        this.ticksCount = 0;
+        this.visible = true;
     }
 
     @Override
     public void processStep(Player player) {
-
+        visible =  ticksCount < visibilityTime;
+        if(ticksCount == visibilityTime +invisibilityTime)
+            ticksCount = 0;
+        else
+            ticksCount ++;
+        if(this.position.distance(player.position) < 2)
+            battle(player);
     }
 
     @Override

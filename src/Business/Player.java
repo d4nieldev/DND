@@ -56,5 +56,10 @@ public abstract class Player extends Unit{
         battle(enemy);
     }
 
+    @Override
+    public String describe(){
+        return super.describe() + String.format("\t\tLevel: %d\t\tExperience: %d/%d", level, experience, 50 * level);
+    }
+
     public abstract void abilityCast(List<Enemy> enemies);
 }
