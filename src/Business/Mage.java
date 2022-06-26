@@ -10,14 +10,14 @@ public class Mage extends Player {
     public Mage(String name, int health_pool, int attack_pts, int defense_pts, int manaPool, int manaCost, int spellPower, int hitsCount, int abilityRange)
     {
         super(name, health_pool, attack_pts, defense_pts);
-        this.abilityResource = new AbilityResource(manaPool/4, manaPool, manaCost);
+        this.ability = new Ability(manaPool/4, manaPool, manaCost, "Blizzard", "mana");
         this.spellPower = spellPower;
         this.hitsCount = hitsCount;
         this.abilityRange = abilityRange;
     }
     @Override
     public String describe(){
-        return super.describe() + String.format("\t\tMana: %s\t\tSpell Power: %d", abilityResource, spellPower);
+        return super.describe() + String.format("\t\tMana: %s\t\tSpell Power: %d", ability, spellPower);
     }
 
     @Override

@@ -19,9 +19,7 @@ public abstract class Enemy extends Unit{
     }
 
     @Override
-    public void visit(Enemy enemy) {
-        // do nothing
-    }
+    public void visit(Enemy enemy) { }
 
     public void onDeath(Player player){
         player.addExperience(experienceValue);
