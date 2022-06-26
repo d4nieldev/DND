@@ -69,9 +69,7 @@ public abstract class Unit extends Tile implements Visitor {
         emptyTile.position = temp;
     }
 
-    public void visit(Wall wall) {
-        // do nothing
-    }
+    public void visit(Wall wall) { }
 
     public abstract void visit(Player player);
     public abstract void visit(Enemy enemy);

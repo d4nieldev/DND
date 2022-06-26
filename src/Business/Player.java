@@ -5,7 +5,7 @@ import java.util.List;
 public abstract class Player extends Unit{
     protected int experience;
     protected int level;
-    protected AbilityResource abilityResource;
+    protected Ability ability;
 
     public Player(String name, int health_pool, int attack_pts, int defense_pts) {
         super('@', name, health_pool, attack_pts, defense_pts);
@@ -56,5 +56,8 @@ public abstract class Player extends Unit{
         battle(enemy);
     }
 
-    public abstract void abilityCast(List<Enemy> enemies);
+    public void abilityCast(List<Enemy> enemies){
+        if(!ability.canCastAbility())
+            messageCallback.send(String.format("%s tried to cast %s, but there was not enough %s: %s ", getName(), ability.getName(), ability.getResourceName(), ability));
+    }
 }

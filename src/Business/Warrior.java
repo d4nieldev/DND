@@ -6,7 +6,7 @@ public class Warrior extends Player{
     public Warrior(String name, int health_pool, int attack_pts, int defense_pts, int abilityCooldown)
     {
         super(name, health_pool, attack_pts, defense_pts);
-        this.abilityResource = new AbilityResource(0, abilityCooldown, abilityCooldown);
+        this.ability = new Ability(0, abilityCooldown, abilityCooldown, "Avenger’s Shield", "cooldown");
     }
 
     @Override
