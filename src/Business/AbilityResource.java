@@ -29,4 +29,8 @@ public class AbilityResource {
     public boolean canCastAbility(){
         return current >= cost;
     }
+
+    public String toString(){
+        return current + "/" + pool;
+    }
 }
