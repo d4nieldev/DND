@@ -8,7 +8,6 @@ public class Monster extends Enemy{
         this.visionRange = visionRange;
     }
 
-
     @Override
     public void processStep(Player player) {
         int movement; // 0 - left, 1 - right, 2 - up, 3 - down
@@ -45,6 +44,7 @@ public class Monster extends Enemy{
         }
     }
 
+    @Override
     public void accept(Unit u){
         u.visit(this);
     }

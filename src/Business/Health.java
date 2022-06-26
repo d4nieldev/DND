@@ -22,8 +22,8 @@ public class Health {
     public void fillHealth(){
         addHealth(pool);
     }
-    public void addToPool(int pool) {
-        this.pool += pool;
+    public void addToPool(int poolAddition) {
+        this.pool += poolAddition;
     }
 
     public boolean isDead(){

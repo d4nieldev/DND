@@ -11,7 +11,7 @@ public class Warrior extends Player{
 
     @Override
     public String describe(){
-        return super.describe() + String.format("\t\tCooldown: %s", abilityResource);
+        return super.describe() + String.format("\t\tCooldown: %s", ability);
     }
 
     @Override

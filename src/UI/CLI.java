@@ -12,6 +12,7 @@ import java.util.function.Consumer;
 
 public class CLI {
     public static void main(String[] args){
+        // print available player selections
         TileFactory tf = new TileFactory();
         int i = 1;
         List<Player> playerList = tf.listPlayers();
@@ -19,6 +20,8 @@ public class CLI {
             System.out.println(i + ". " + player.describe());
             i++;
         }
+
+        // read player selection
         Scanner s = new Scanner(System.in);
         boolean selectedPlayer = false;
         int playerSelection = 0;
