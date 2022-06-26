@@ -14,11 +14,20 @@ public abstract class Player extends Unit{
     }
 
     protected void levelUp() {
-        // TODO: implement this method
+
+        this.experience -= (this.level * 50 );
+        this.level++;
+        this.health.addToPool(this.level * 10);
+        this.health.fillHealth();
+        this.attack_pts += this.level * 4;
+        this.defense_pts += this.level;
+
     }
 
     public void addExperience(int addition){
-        // TODO: implement this method
+        this.experience += addition;
+        if(this.experience >= this.level * 50)
+            levelUp();
     }
 
     @Override

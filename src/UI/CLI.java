@@ -12,7 +12,6 @@ import java.util.function.Consumer;
 
 public class CLI {
     public static void main(String[] args){
-        // TODO: preview all players
         TileFactory tf = new TileFactory();
         int i = 1;
         List<Player> playerList = tf.listPlayers();
@@ -22,10 +21,10 @@ public class CLI {
         }
         Scanner s = new Scanner(System.in);
         boolean selectedPlayer = false;
-        int playerSelection = 1;
+        int playerSelection = 0;
         while(!selectedPlayer) {
             try {
-                playerSelection = Integer.parseInt(s.next());
+                playerSelection = Integer.parseInt(s.next()) - 1;
                 System.out.println("Selected " + playerList.get(playerSelection).getName());
                 selectedPlayer = true;
             }

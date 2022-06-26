@@ -31,7 +31,6 @@ public class LevelManager {
             // TODO: print other needed stuff
 
             char playerMove = scanner.next().charAt(0);
-
             switch(playerMove){
                 case ('w'):
                     // interact up
