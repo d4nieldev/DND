@@ -32,13 +32,12 @@ public class CLI {
                 System.out.println("Please input a NUMBER");
             }
             catch (IndexOutOfBoundsException ex){
-                System.out.println("Please select a valid player (invalid player index selected");
+                System.out.println("Please select a valid player (invalid player index selected)");
             }
         }
 
         // TODO: read real path from args here
         String pathToLevels = System.getProperty("user.dir") + "\\levels";
-        System.out.println(pathToLevels);
 
         GameManager gameManager = new GameManager(playerSelection, pathToLevels);
         gameManager.playGame();

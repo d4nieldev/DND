@@ -15,6 +15,10 @@ public class Mage extends Player {
         this.hitsCount = hitsCount;
         this.abilityRange = abilityRange;
     }
+    @Override
+    public String describe(){
+        return super.describe() + String.format("\t\tMana: %s\t\tSpell Power: %d", ability, spellPower);
+    }
 
     @Override
     protected void levelUp() {

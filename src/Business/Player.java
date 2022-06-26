@@ -56,6 +56,11 @@ public abstract class Player extends Unit{
         battle(enemy);
     }
 
+    @Override
+    public String describe(){
+        return super.describe() + String.format("\t\tLevel: %d\t\tExperience: %d/%d", level, experience, 50 * level);
+    }
+
     public void abilityCast(List<Enemy> enemies){
         if(!ability.canCastAbility())
             messageCallback.send(String.format("%s tried to cast %s, but there was not enough %s: %s ", getName(), ability.getName(), ability.getResourceName(), ability));

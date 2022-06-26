@@ -10,6 +10,11 @@ public class Warrior extends Player{
     }
 
     @Override
+    public String describe(){
+        return super.describe() + String.format("\t\tCooldown: %s", abilityResource);
+    }
+
+    @Override
     protected void levelUp() {
         // TODO: implement this method
     }
