@@ -8,11 +8,9 @@ import java.util.stream.Collectors;
 
 public class Board {
     private List<Tile> tiles;
-    private int maxRow;
     private int maxCol;
 
     public Board(Tile[][] tiles){
-        this.maxRow = tiles.length;
         this.maxCol = tiles[0].length;
         this.tiles = new ArrayList<>();
         for (int y = 0; y < tiles.length; y++) {

@@ -19,6 +19,13 @@ public class Health {
             amount = pool;
     }
 
+    public void fillHealth(){
+        addHealth(pool);
+    }
+    public void addToPool(int pool) {
+        this.pool += pool;
+    }
+
     public boolean isDead(){
         return this.amount <= 0;
     }
