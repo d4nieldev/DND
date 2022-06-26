@@ -8,18 +8,14 @@ import java.util.stream.Collectors;
 
 public class Board {
     private List<Tile> tiles;
-    private int maxCol;
+    private final int maxCol;
 
     public Board(Tile[][] tiles){
         this.maxCol = tiles[0].length;
         this.tiles = new ArrayList<>();
-        for (int y = 0; y < tiles.length; y++) {
-            for (int x = 0; x < tiles[0].length; x++) {
-                Tile tile = tiles[y][x];
-                tile.initialize(new Position(x, y));
-                this.tiles.add(tile);
-            }
-        }
+
+        for (Tile[] tile : tiles)
+            this.tiles.addAll(Arrays.asList(tile).subList(0, tiles[0].length));
     }
 
     public Tile get(int x, int y){
@@ -32,19 +28,19 @@ public class Board {
     }
 
     public void remove(Tile e){
-        tiles.remove(e);
-        Position p = e.position;
-        tiles.add(e);
+        EmptyTile emptyTile = new EmptyTile();
+        emptyTile.initialize(e.position);
+        tiles.set(tiles.indexOf(e), emptyTile);
     }
 
     public String toString(){
         tiles = tiles.stream().sorted().collect(Collectors.toList());
-        String output = "";
+        StringBuilder output = new StringBuilder();
         for (int i = 0; i < tiles.size(); i++){
             if (i != 0 && i % maxCol == 0)
-                output += "\n";
-            output += tiles.get(i).getTile();
+                output.append("\n");
+            output.append(tiles.get(i).getTile());
         }
-        return output;
+        return output.toString();
     }
 }

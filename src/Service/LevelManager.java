@@ -24,11 +24,9 @@ public class LevelManager {
     }
 
     public void playGame(){
-        // TODO: implement this method
         Scanner scanner = new Scanner(System.in);
         while (!player.isDead()){
             System.out.println(board);
-            // TODO: print other needed stuff
 
             char playerMove = scanner.next().charAt(0);
             switch(playerMove){
@@ -56,6 +54,7 @@ public class LevelManager {
                     // pass
                     break;
             }
+
             // TODO: enemy move
 
         }

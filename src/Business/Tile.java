@@ -29,9 +29,5 @@ public abstract class Tile implements Visited, Comparable<Tile> {
         return position.getY();
     }
 
-    public abstract void accept(Unit u);
-    public abstract boolean isEnemy();
-    public abstract boolean isPlayer();
-    public abstract boolean isWall();
-    public abstract boolean isEmpty();
+    public abstract void accept(Unit unit);
 }

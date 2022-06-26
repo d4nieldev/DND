@@ -5,6 +5,7 @@ public abstract class Unit extends Tile implements Visitor {
     protected Health health;
     protected int attack_pts;
     protected int defense_pts;
+    protected MessageCallback messageCallback;
 
     public Unit(char tile, String name, int health_pool, int attack_pts, int defense_pts)
     {
@@ -15,30 +16,43 @@ public abstract class Unit extends Tile implements Visitor {
         this.defense_pts = defense_pts;
     }
 
+    public void setMessageCallback(MessageCallback messageCallback){
+        this.messageCallback = messageCallback;
+    }
+
     public String getName(){
         return this.name;
     }
 
     protected int attack(){
-        // TODO: implement this method
-        return -1;
+        return (int)(Math.random() * (attack_pts + 1));
     }
 
     public int defend(){
-        // TODO: implement this method
-        return -1;
+        return (int)(Math.random() * (defense_pts + 1));
+    }
+
+    protected void battle(Unit unit){
+        messageCallback.send(getName() + " engaged in combat with " + unit.getName() + ".");
+        messageCallback.send(describe());
+        messageCallback.send(unit.describe());
+
+        int attackRoll = attack();
+        messageCallback.send(getName() + " rolled " + attackRoll + " attack points.");
+
+        int defenseRoll = unit.defend();
+        messageCallback.send(unit.getName() + " rolled " + defenseRoll + " defense points.");
+
+        int penetration = attackRoll - defenseRoll;
+        if(penetration > 0)
+            unit.health.reduceHealth(penetration);
+        else
+            penetration = 0;
+        messageCallback.send(getName() + " dealt " + penetration + " damage to " + unit.getName() + ".");
     }
 
     public void interact(Tile tile){
-        tile.accept(this); // TODO: maybe change?
-    }
-
-    /**
-     * Combat against another unit
-     * @param unit the unit to engage combat into
-     */
-    protected void battle(Unit unit){
-        // TODO: implement this method
+        tile.accept(this);
     }
 
     public String describe(){
@@ -49,25 +63,17 @@ public abstract class Unit extends Tile implements Visitor {
         return health.isDead();
     }
 
-    public void visit(EmptyTile e) {
-        e.accept(this);
+    public void visit(EmptyTile emptyTile){
+        Position temp = position;
+        position = emptyTile.position;
+        emptyTile.position = temp;
     }
 
-    public void visit(Wall w){
-        w.accept(this);
+    public void visit(Wall wall) {
+        // do nothing
     }
 
-    public boolean isWall(){
-        return false;
-    }
-
-    public boolean isEmpty(){
-        return false;
-    }
-
-    public abstract void visit(Player p);
-    public abstract void visit(Enemy e);
-
-    public abstract void processStep();
-    public abstract void onDeath();
+    public abstract void visit(Player player);
+    public abstract void visit(Enemy enemy);
+    public abstract void accept(Unit unit);
 }

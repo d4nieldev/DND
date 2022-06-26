@@ -13,4 +13,34 @@ public class Trap extends Enemy{
         this. ticksCount = 0;
         this. visible = true;
     }
+
+    @Override
+    public void processStep(Player player) {
+
+    }
+
+    @Override
+    public void accept(Unit u){
+        u.visit(this);
+    }
+
+    @Override
+    public void visit(Player player) {
+
+    }
+
+    @Override
+    public void visit(Enemy enemy) {
+
+    }
+
+    @Override
+    public void visit(EmptyTile emptyTile) {
+
+    }
+
+    @Override
+    public void visit(Wall wall) {
+
+    }
 }

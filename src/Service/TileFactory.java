@@ -69,11 +69,15 @@ public class TileFactory {
     }
 
     public Enemy produceEnemy(char tile) {
-        return enemies.get(tile).get();
+        Enemy enemy = enemies.get(tile).get();
+        enemy.setMessageCallback(System.out::println);
+        return enemy;
     }
 
     public Player producePlayer(int idx){
-        return players.get(idx).get();
+        Player player = players.get(idx).get();
+        player.setMessageCallback(System.out::println);
+        return player;
     }
 
     public EmptyTile produceEmpty() {
