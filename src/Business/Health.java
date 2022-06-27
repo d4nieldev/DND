@@ -33,4 +33,8 @@ public class Health {
     public String toString(){
         return String.format("%d/%d", amount, pool);
     }
+
+    public int getPool(){
+        return this.pool;
+    }
 }

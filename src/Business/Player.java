@@ -9,6 +9,7 @@ public abstract class Player extends Unit{
 
     public Player(String name, int health_pool, int attack_pts, int defense_pts) {
         super('@', name, health_pool, attack_pts, defense_pts);
+        this.ability.setAbilityCast(this::abilityCastCallback);
         this.experience = 0;
         this.level = 1;
     }
@@ -16,15 +17,17 @@ public abstract class Player extends Unit{
     protected void levelUp() {
         this.experience -= (this.level * 50 );
         this.level++;
+    }
 
-        int healthAddition = this.level * 10;
+    protected void addBonuses(int healthBonus, int attackBonus, int defenseBonus){
+        int healthAddition = this.level * 10 + healthBonus;
         this.health.addToPool(healthAddition);
         this.health.fillHealth();
 
-        int attackAddition = this.level * 4;
+        int attackAddition = this.level * 4 + attackBonus;
         this.attack_pts += attackAddition;
 
-        int defenseAddition =  this.level;
+        int defenseAddition =  this.level + defenseBonus;
         this.defense_pts += defenseAddition;
 
         messageCallback.send(getName() + " reached level " + this.level + ": +" + healthAddition + " Health, +" + attackAddition + " Attack, +" + defenseAddition + " Defense");
@@ -53,6 +56,8 @@ public abstract class Player extends Unit{
     public void abilityCast(List<Enemy> enemyList){
         if(!ability.canCastAbility())
             messageCallback.send(String.format("%s tried to cast %s, but there was not enough %s: %s ", getName(), ability.getName(), ability.getResourceName(), ability));
+        else
+            ability.castAbility(enemyList);
     }
 
     @Override
@@ -64,4 +69,7 @@ public abstract class Player extends Unit{
     public void accept(Unit u) {
         u.visit(this);
     }
+
+    protected abstract void abilityCastCallback(List<Enemy> enemyList);
+    public abstract void onGameTick();
 }
