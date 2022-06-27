@@ -58,7 +58,7 @@ public abstract class Unit extends Tile implements Visitor {
         else
             penetration = 0;
 
-        messageCallback.send(String.format("%s hit %s for %d%s damage.", attackerName, getName(), penetration, abilityDamage ? " ability" : ""));
+        messageCallback.send(String.format("%s dealt %d%s damage to %s.", attackerName, penetration, abilityDamage ? " ability" : "", getName()));
     }
 
     public void interact(Tile tile){
