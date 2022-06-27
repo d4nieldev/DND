@@ -52,6 +52,7 @@ public abstract class Unit extends Tile implements Visitor {
     }
 
     public void interact(Tile tile){
+        onGameTick();
         tile.accept(this);
     }
 
@@ -74,4 +75,5 @@ public abstract class Unit extends Tile implements Visitor {
     public abstract void visit(Player player);
     public abstract void visit(Enemy enemy);
     public abstract void accept(Unit unit);
+    public abstract void onGameTick();
 }
