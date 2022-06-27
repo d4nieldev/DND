@@ -12,26 +12,23 @@ public class Warrior extends Player{
 
     @Override
     protected void abilityCastCallback(List<Enemy> enemyList){
-        super.abilityCast(enemyList);
-        List<Enemy> enemiesInRange = enemyList.stream().filter(e -> e.position.distance(position) < 3).collect(Collectors.toList());
-
         int healAmount = 10 * defense_pts;
         messageCallback.send(String.format("%s used %s, healing for %d", getName(), ability.getName(), healAmount));
         health.addHealth(healAmount);
 
+        List<Enemy> enemiesInRange = enemyList.stream().filter(e -> e.position.distance(position) < 3).collect(Collectors.toList());
         if(!enemiesInRange.isEmpty()) {
             Enemy enemyToHit = enemiesInRange.get((int) (Math.random() * enemiesInRange.size()));
 
-            int attackAmount = (int) (0.1 * health.getPool());
             int defenseRoll = enemyToHit.defend();
-            messageCallback.send(enemyToHit.getName() + " rolled " + defenseRoll + " defense points.");
 
+            int attackAmount = (int) (0.1 * health.getPool());
             int penetration = attackAmount - defenseRoll;
             if (penetration > 0)
                 enemyToHit.health.reduceHealth(penetration);
             else
                 penetration = 0;
-            messageCallback.send(String.format("%s hit %s for %d ability damage", getName(), enemyToHit.getName(), penetration));
+            messageCallback.send(String.format("%s hit %s for %d ability damage.", getName(), enemyToHit.getName(), penetration));
         }
     }
 

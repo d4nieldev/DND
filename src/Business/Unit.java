@@ -25,11 +25,15 @@ public abstract class Unit extends Tile implements Visitor {
     }
 
     protected int attack(){
-        return (int)(Math.random() * (attack_pts + 1));
+        int attackRoll = (int)(Math.random() * (attack_pts + 1));
+        messageCallback.send(getName() + " rolled " + attackRoll + " attack points.");
+        return attackRoll;
     }
 
     public int defend(){
-        return (int)(Math.random() * (defense_pts + 1));
+        int defenseRoll = (int)(Math.random() * (defense_pts + 1));
+        messageCallback.send(getName() + " rolled " + defenseRoll + " defense points.");
+        return defenseRoll;
     }
 
     protected void battle(Unit unit){
@@ -38,10 +42,7 @@ public abstract class Unit extends Tile implements Visitor {
         messageCallback.send(unit.describe());
 
         int attackRoll = attack();
-        messageCallback.send(getName() + " rolled " + attackRoll + " attack points.");
-
         int defenseRoll = unit.defend();
-        messageCallback.send(unit.getName() + " rolled " + defenseRoll + " defense points.");
 
         int penetration = attackRoll - defenseRoll;
         if(penetration > 0)
