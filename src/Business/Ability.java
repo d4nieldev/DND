@@ -40,6 +40,7 @@ public class Ability {
         return this.resourceName;
     }
 
+
     public void castAbility(List<Enemy> enemyList){
         if(canCastAbility()) {
             resourceCurrent -= resourceCost;
