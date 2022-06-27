@@ -30,6 +30,9 @@ public class Warrior extends Player{
             else
                 penetration = 0;
             messageCallback.send(String.format("%s hit %s for %d ability damage.", getName(), enemyToHit.getName(), penetration));
+
+            if(enemyToHit.isDead())
+                consumeEnemy(enemyToHit);
         }
     }
 

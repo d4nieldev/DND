@@ -18,8 +18,8 @@ public abstract class Enemy extends Unit{
         return this.experienceValue;
     }
 
-    public void onDeath(Player player){
-        deathCallback.onDeath(player);
+    protected Tile onDeath(){
+        return deathCallback.onDeath();
     }
 
     public void setInteractCallback(InteractCallback interactCallback){

@@ -38,10 +38,11 @@ public class Mage extends Player {
                 enemyToHit.health.reduceHealth(penetration);
             else
                 penetration = 0;
+
             messageCallback.send(String.format("%s hit %s for %d ability damage.", getName(), enemyToHit.getName(), penetration));
 
             if(enemyToHit.isDead())
-                enemiesInRange.remove(enemyToHit);
+                consumeEnemy(enemyToHit);
 
             hits++;
         }

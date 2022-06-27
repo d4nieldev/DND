@@ -19,10 +19,7 @@ public class Board {
 
         this.enemyList = enemyList;
         for(Enemy enemy : enemyList) {
-            enemy.setDeathCallback(player -> {
-                player.addExperience(enemy.getExperienceValue());
-                player.interact(this.tiles.get(remove(enemy)));
-            });
+            enemy.setDeathCallback(() -> this.tiles.get(remove(enemy)));
 
             enemy.setInteractCallback(action -> {
                 switch (action) {

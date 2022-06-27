@@ -28,7 +28,7 @@ public class TileFactory {
                 () -> new Monster('g', "Giant-Wright",1500, 100, 40,500,   5),
                 () -> new Monster('w', "White Walker", 2000, 150, 50, 1000, 6),
                 /*
-                TODO: bonus
+                TODO: boss bonus
                 () -> new Boss('M', "The Mountain", 1000, 60, 25,  500, 6, 5),
                 () -> new Boss('C', "Queen Cersei", 100, 10, 10,1000, 1, 8),
                 () -> new Boss('K', "Night's King", 5000, 300, 150, 5000, 8, 3),
@@ -50,7 +50,7 @@ public class TileFactory {
                 () -> new Rogue("Arya Stark", 150, 40, 2, 20),
                 () -> new Rogue("Bronn", 250, 35, 3, 50)
                 /*
-                TODO: bonus
+                TODO: hunter bonus
                 () -> new Hunter("Ygrditte", 220, 30, 2, 6)
                  */
         );

@@ -38,24 +38,26 @@ public abstract class Player extends Unit{
         messageCallback.send(getName() + " reached level " + this.level + ": +" + healthAddition + " Health, +" + attackAddition + " Attack, +" + defenseAddition + " Defense");
     }
 
-    public void addExperience(int addition){
+    protected void addExperience(int addition){
         this.experience += addition;
         if(this.experience >= this.level * 50)
             levelUp();
     }
 
-    protected void battle(Enemy enemy){
-        super.battle(enemy);
-        if(enemy.isDead())
-            enemy.onDeath(this);
-    }
-
-    public void visit(Player player){
-        // do nothing
-    }
+    public void visit(Player player){ }
 
     public void visit(Enemy enemy){
-        battle(enemy);
+        super.battle(enemy);
+        if(enemy.isDead())
+            interact(consumeEnemy(enemy));
+
+    }
+
+    protected Tile consumeEnemy(Enemy enemy){
+        Tile tile = enemy.onDeath();
+        messageCallback.send(String.format("%s died. %s gained %d experience", enemy.getName(), getName(), enemy.getExperienceValue()));
+        addExperience(enemy.getExperienceValue());
+        return tile;
     }
 
     public void abilityCast(List<Enemy> enemyList){
@@ -63,6 +65,7 @@ public abstract class Player extends Unit{
             messageCallback.send(String.format("%s tried to cast %s, but there was not enough %s: %s ", getName(), ability.getName(), ability.getResourceName(), ability));
         else
             ability.castAbility(enemyList);
+
     }
 
     @Override

@@ -10,21 +10,25 @@ public class Monster extends Enemy{
 
     @Override
     public void processStep(Player player) {
-        int movement; // 0 - left, 1 - right, 2 - up, 3 - down
+        int movement; // 0 - up, 1 - down, 2 - left, 3 - right
 
         if (position.distance(player.position) < visionRange){
             int dx = position.getX() - player.position.getX();
             int dy = position.getY() - player.position.getY();
             if (Math.abs(dx) > Math.abs(dy))
                 if(dx > 0)
-                    movement = 1;
-                else
-                    movement = 0;
-            else
-                if (dy > 0)
+                    // move left
                     movement = 2;
                 else
+                    // move right
                     movement = 3;
+            else
+                if (dy > 0)
+                    // move up
+                    movement = 0;
+                else
+                    // move down
+                    movement = 1;
         }
         else
             movement = (int)(Math.random() * 4);

@@ -39,7 +39,7 @@ public class CLI {
             }
         }
 
-        // TODO: read real path from args here
+        // TODO: read real path from args
         String pathToLevels = System.getProperty("user.dir") + "\\levels";
 
         GameManager gameManager = new GameManager(playerSelection, pathToLevels);
