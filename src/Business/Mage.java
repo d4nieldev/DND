@@ -1,6 +1,7 @@
 package Business;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Mage extends Player {
     private int spellPower;
@@ -22,12 +23,45 @@ public class Mage extends Player {
     }
 
     @Override
-    protected void levelUp() {
-        // TODO: implement this method
+    protected void abilityCastCallback(List<Enemy> enemyList) {
+        int hits = 0;
+        List<Enemy> enemiesInRange = enemyList.stream().filter(e -> e.position.distance(position) < abilityRange).collect(Collectors.toList());
+        while (hits < hitsCount && enemiesInRange.size() > 0){
+            Enemy enemyToHit = enemiesInRange.get((int) (Math.random() * enemiesInRange.size()));
+
+            int defenseRoll = enemyToHit.defend();
+
+            int penetration = spellPower - defenseRoll;
+            if (penetration > 0)
+                enemyToHit.health.reduceHealth(penetration);
+            else
+                penetration = 0;
+            messageCallback.send(String.format("%s hit %s for %d ability damage.", getName(), enemyToHit.getName(), penetration));
+
+            if(enemyToHit.isDead())
+                enemiesInRange.remove(enemyToHit);
+
+            hits++;
+        }
     }
 
     @Override
-    public void abilityCast(List<Enemy> enemies) {
-        // TODO: implement this method
+    public void onGameTick() {
+        ability.addToCurrent(this.level);
+    }
+
+    @Override
+    protected void levelUp() {
+        super.levelUp();
+        addBonuses(0, 0, 0);
+
+        int manaPoolAddition = 25 * this.level;
+        ability.setResourcePool(ability.getResourcePool() + manaPoolAddition);
+        ability.addToCurrent(ability.getResourcePool() / 4);
+
+        int spellPowerAddition = 10 * this.level;
+        spellPower += spellPowerAddition;
+
+        messageCallback.send(String.format("\t\t\t\t+%d maximum mana, +%d spell power", manaPoolAddition, spellPowerAddition));
     }
 }

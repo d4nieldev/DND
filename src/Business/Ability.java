@@ -47,6 +47,10 @@ public class Ability {
         }
     }
 
+    public int getResourcePool(){
+        return this.resourcePool;
+    }
+
     public void setResourcePool(int resourcePool){
         this.resourcePool = resourcePool;
     }
