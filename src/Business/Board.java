@@ -9,13 +9,42 @@ import java.util.stream.Collectors;
 public class Board {
     private List<Tile> tiles;
     private final int maxCol;
+    private List<Enemy> enemyList;
 
-    public Board(Tile[][] tiles){
+    public Board(Tile[][] tiles, List<Enemy> enemyList){
         this.maxCol = tiles[0].length;
         this.tiles = new ArrayList<>();
-
         for (Tile[] tile : tiles)
             this.tiles.addAll(Arrays.asList(tile).subList(0, tiles[0].length));
+
+        this.enemyList = enemyList;
+        for(Enemy enemy : enemyList) {
+            enemy.setDeathCallback(player -> {
+                player.addExperience(enemy.getExperienceValue());
+                player.interact(this.tiles.get(remove(enemy)));
+            });
+
+            enemy.setInteractCallback(action -> {
+                switch (action) {
+                    case (0) ->
+                            // interact up
+                            enemy.interact(get(enemy.getX(), enemy.getY() - 1));
+                    case (1) ->
+                            // interact down
+                            enemy.interact(get(enemy.getX(), enemy.getY() + 1));
+                    case (2) ->
+                            // interact left
+                            enemy.interact(get(enemy.getX() - 1, enemy.getY()));
+                    case (3) ->
+                            // move right
+                            enemy.interact(get(enemy.getX() + 1, enemy.getY()));
+                }
+            });
+        }
+    }
+
+    public List<Enemy> getEnemyList(){
+        return this.enemyList;
     }
 
     public Tile get(int x, int y){
@@ -27,10 +56,15 @@ public class Board {
         throw new NoSuchElementException("No such tile with the position (" + x + ", " + y + ")");
     }
 
-    public void remove(Enemy e){
+    public int remove(Enemy e){
         EmptyTile emptyTile = new EmptyTile();
         emptyTile.initialize(e.position);
-        tiles.set(tiles.indexOf(e), emptyTile);
+
+        int enemyPosition = tiles.indexOf(e);
+        tiles.set(enemyPosition, emptyTile);
+
+        enemyList.remove(e);
+        return enemyPosition;
     }
 
     public String toString(){

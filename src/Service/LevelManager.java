@@ -8,13 +8,11 @@ import java.util.Scanner;
 
 public class LevelManager {
     private Board board;
-    private List<Enemy> enemyList;
     private Player player;
     private Position initialPlayerPosition;
 
-    public LevelManager(Tile[][] tiles, Position initialPlayerPosition){
-        this.board = new Board(tiles);
-        // TODO: add enemy list
+    public LevelManager(Tile[][] tiles, List<Enemy> enemyList, Position initialPlayerPosition){
+        this.board = new Board(tiles, enemyList);
         this.initialPlayerPosition = initialPlayerPosition;
     }
 
@@ -48,14 +46,14 @@ public class LevelManager {
                     break;
                 case ('e'):
                     // cast special ability
-                    player.abilityCast(enemyList);
+                    player.abilityCast(board.getEnemyList());
                     break;
                 case ('q'):
                     // pass
                     break;
             }
 
-            for (Enemy e : enemyList)
+            for (Enemy e : board.getEnemyList())
                 e.processStep(player);
 
         }

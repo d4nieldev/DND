@@ -1,9 +1,6 @@
 package Service;
 
-import Business.Board;
-import Business.Player;
-import Business.Position;
-import Business.Tile;
+import Business.*;
 
 import java.io.BufferedReader;
 import java.util.ArrayList;
@@ -24,6 +21,7 @@ public class LevelParser {
                 try (FileReader fr = new FileReader(level)){
                     BufferedReader br = new BufferedReader(fr);
                     Tile[][] tiles = new Tile[maxes[0]][maxes[1]];
+                    List<Enemy> enemyList = new ArrayList<>();
                     Position initialPlayerPosition = null;
                     int row = 0;
                     String line;
@@ -34,14 +32,20 @@ public class LevelParser {
                                 tiles[row][col] = player;
                                 initialPlayerPosition = new Position(col, row);
                             }
-                            else {
+                            else if (line.charAt(col) == '.' || line.charAt(col) == '#'){
                                 tiles[row][col] = tf.produceTile(line.charAt(col));
                                 tiles[row][col].initialize(new Position(col, row));
+                            }
+                            else {
+                                Enemy enemy = tf.produceEnemy(line.charAt(col));
+                                tiles[row][col] = enemy;
+                                enemy.initialize(new Position(col, row));
+                                enemyList.add(enemy);
                             }
                         }
                         row++;
                     }
-                    levelManagers.add(new LevelManager(tiles, initialPlayerPosition));
+                    levelManagers.add(new LevelManager(tiles, enemyList, initialPlayerPosition));
                 }
                 catch (IOException e){
                     e.printStackTrace();

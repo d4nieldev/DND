@@ -8,7 +8,7 @@ public class Ability {
     private int resourcePool;
     private int resourceCurrent;
     private int resourceCost;
-    private AbilityCast abilityCast;
+    private AbilityCastCallback abilityCastCallback;
 
     public Ability(int initial, int resourcePool, int resourceCost, String name, String resourceName){
         this.resourcePool = resourcePool;
@@ -18,8 +18,8 @@ public class Ability {
         this.resourceName = resourceName;
     }
 
-    public void setAbilityCast(AbilityCast abilityCast){
-        this.abilityCast = abilityCast;
+    public void setAbilityCast(AbilityCastCallback abilityCastCallback){
+        this.abilityCastCallback = abilityCastCallback;
     }
 
     public void addToCurrent(int addition) {
@@ -44,7 +44,7 @@ public class Ability {
     public void castAbility(List<Enemy> enemyList){
         if(canCastAbility()) {
             resourceCurrent -= resourceCost;
-            abilityCast.castAbility(enemyList);
+            abilityCastCallback.castAbility(enemyList);
         }
     }
 
@@ -58,5 +58,9 @@ public class Ability {
 
     public boolean canCastAbility(){
         return resourceCurrent >= resourceCost;
+    }
+
+    public String toString(){
+        return String.format("%d/%d", resourceCurrent, resourcePool);
     }
 }

@@ -2,16 +2,28 @@ package Business;
 
 public abstract class Enemy extends Unit{
     private int experienceValue;
+    private DeathCallback deathCallback;
+    protected InteractCallback interactCallback;
 
     public Enemy(char tile, String name, int health_pool, int attack_pts, int defense_pts, int experienceValue) {
         super(tile, name, health_pool, attack_pts, defense_pts);
         this.experienceValue = experienceValue;
     }
 
+    public void setDeathCallback(DeathCallback deathCallback) {
+        this.deathCallback = deathCallback;
+    }
+
+    public int getExperienceValue(){
+        return this.experienceValue;
+    }
+
     public void onDeath(Player player){
-        player.addExperience(experienceValue);
-        // TODO: remove enemy from board
-        // TODO: replace player position with this position
+        deathCallback.onDeath(player);
+    }
+
+    public void setInteractCallback(InteractCallback interactCallback){
+        this.interactCallback = interactCallback;
     }
 
     @Override

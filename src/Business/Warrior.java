@@ -8,6 +8,7 @@ public class Warrior extends Player{
     {
         super(name, health_pool, attack_pts, defense_pts);
         this.ability = new Ability(3, abilityCooldown, abilityCooldown, "Avenger’s Shield", "cooldown");
+        this.ability.setAbilityCast(this::abilityCastCallback);
     }
 
     @Override
