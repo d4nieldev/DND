@@ -9,9 +9,14 @@ public abstract class Player extends Unit{
 
     public Player(String name, int health_pool, int attack_pts, int defense_pts) {
         super('@', name, health_pool, attack_pts, defense_pts);
-        this.ability.setAbilityCast(this::abilityCastCallback);
         this.experience = 0;
         this.level = 1;
+    }
+
+    @Override
+    public void interact(Tile tile){
+        onGameTick();
+        super.interact(tile);
     }
 
     protected void levelUp() {

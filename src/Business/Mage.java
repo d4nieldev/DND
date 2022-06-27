@@ -12,6 +12,7 @@ public class Mage extends Player {
     {
         super(name, health_pool, attack_pts, defense_pts);
         this.ability = new Ability(manaPool/4, manaPool, manaCost, "Blizzard", "mana");
+        this.ability.setAbilityCast(this::abilityCastCallback);
         this.spellPower = spellPower;
         this.hitsCount = hitsCount;
         this.abilityRange = abilityRange;
@@ -24,6 +25,7 @@ public class Mage extends Player {
 
     @Override
     protected void abilityCastCallback(List<Enemy> enemyList) {
+        messageCallback.send(String.format("%s cast %s", getName(), ability.getName()));
         int hits = 0;
         List<Enemy> enemiesInRange = enemyList.stream().filter(e -> e.position.distance(position) < abilityRange).collect(Collectors.toList());
         while (hits < hitsCount && enemiesInRange.size() > 0){

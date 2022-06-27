@@ -51,7 +51,7 @@ public class TileFactory {
                 () -> new Rogue("Bronn", 250, 35, 3, 50)
                 /*
                 TODO: bonus
-                () -> new Hunter("Ygritte", 220, 30, 2, 6)
+                () -> new Hunter("Ygrditte", 220, 30, 2, 6)
                  */
         );
     }

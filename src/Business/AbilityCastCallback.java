@@ -2,6 +2,6 @@ package Business;
 
 import java.util.List;
 
-public interface AbilityCast {
+public interface AbilityCastCallback {
     void castAbility(List<Enemy> enemyList);
 }
