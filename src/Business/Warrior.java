@@ -24,12 +24,8 @@ public class Warrior extends Player{
             int defenseRoll = enemyToHit.defend();
 
             int attackAmount = (int) (0.1 * health.getPool());
-            int penetration = attackAmount - defenseRoll;
-            if (penetration > 0)
-                enemyToHit.health.reduceHealth(penetration);
-            else
-                penetration = 0;
-            messageCallback.send(String.format("%s hit %s for %d ability damage.", getName(), enemyToHit.getName(), penetration));
+
+            enemyToHit.dealPureDamage(getName(), attackAmount - defenseRoll, true);
 
             if(enemyToHit.isDead())
                 consumeEnemy(enemyToHit);

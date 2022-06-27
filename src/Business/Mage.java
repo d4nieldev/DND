@@ -33,13 +33,7 @@ public class Mage extends Player {
 
             int defenseRoll = enemyToHit.defend();
 
-            int penetration = spellPower - defenseRoll;
-            if (penetration > 0)
-                enemyToHit.health.reduceHealth(penetration);
-            else
-                penetration = 0;
-
-            messageCallback.send(String.format("%s hit %s for %d ability damage.", getName(), enemyToHit.getName(), penetration));
+            enemyToHit.dealPureDamage(getName(), spellPower - defenseRoll, true);
 
             if(enemyToHit.isDead())
                 consumeEnemy(enemyToHit);

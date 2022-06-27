@@ -32,13 +32,7 @@ public class Rogue extends Player{
         for (Enemy enemyToHit : enemiesInRange) {
             int defenseRoll = enemyToHit.defend();
 
-            int penetration = attack_pts - defenseRoll;
-            if (penetration > 0)
-                enemyToHit.health.reduceHealth(penetration);
-            else
-                penetration = 0;
-
-            messageCallback.send(String.format("%s hit %s for %d ability damage.", getName(), enemyToHit.getName(), penetration));
+            enemyToHit.dealPureDamage(getName(), attack_pts - defenseRoll, true);
 
             if(enemyToHit.isDead())
                 consumeEnemy(enemyToHit);

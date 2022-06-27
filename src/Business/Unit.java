@@ -49,12 +49,16 @@ public abstract class Unit extends Tile implements Visitor {
         int attackRoll = attack();
         int defenseRoll = unit.defend();
 
-        int penetration = attackRoll - defenseRoll;
+        unit.dealPureDamage(getName(), attackRoll - defenseRoll, false);
+    }
+
+    protected void dealPureDamage(String attackerName, int penetration, boolean abilityDamage){
         if(penetration > 0)
-            unit.health.reduceHealth(penetration);
+            health.reduceHealth(penetration);
         else
             penetration = 0;
-        messageCallback.send(getName() + " dealt " + penetration + " damage to " + unit.getName() + ".");
+
+        messageCallback.send(String.format("%s hit %s for %d%s damage.", attackerName, getName(), penetration, abilityDamage ? " ability" : ""));
     }
 
     public void interact(Tile tile){
