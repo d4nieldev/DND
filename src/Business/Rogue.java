@@ -1,6 +1,7 @@
 package Business;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Rogue extends Player{
     public Rogue(String name, int health_pool, int attack_pts, int defense_pts, int abilityCost) {
@@ -15,11 +16,31 @@ public class Rogue extends Player{
 
     @Override
     protected void levelUp() {
-        // TODO: implement this method
+        super.levelUp();
+        ability.fillCurrent();
+        int attackBonus = 3 * this.level;
+
+        addBonuses(0, attackBonus, 0);
     }
 
     @Override
-    public void abilityCast(List<Enemy> enemies) {
-        // TODO: implement this method
+    public void abilityCastCallback(List<Enemy> enemyList) {
+        List<Enemy> enemiesToHit = enemyList.stream().filter(e -> e.position.distance(position) < 2).collect(Collectors.toList());
+        for (Enemy enemyToHit : enemiesToHit) {
+
+            int defenseRoll = enemyToHit.defend();
+            int penetration = attack_pts - defenseRoll;
+            if (penetration > 0)
+                enemyToHit.health.reduceHealth(penetration);
+            else
+                penetration = 0;
+            messageCallback.send(String.format("%s hit %s for %d ability damage.", getName(), enemyToHit.getName(), penetration));
+        }
     }
+
+    @Override
+    public void onGameTick(){
+        ability.addToCurrent(10);
+    }
+
 }
