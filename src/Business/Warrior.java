@@ -7,7 +7,7 @@ public class Warrior extends Player{
     public Warrior(String name, int health_pool, int attack_pts, int defense_pts, int abilityCooldown)
     {
         super(name, health_pool, attack_pts, defense_pts);
-        this.ability = new Ability(3, abilityCooldown, abilityCooldown, "Avenger’s Shield", "cooldown");
+        this.ability = new Ability(abilityCooldown, abilityCooldown, abilityCooldown, "Avenger’s Shield", "cooldown");
         this.ability.setAbilityCast(this::abilityCastCallback);
     }
 

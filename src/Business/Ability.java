@@ -5,7 +5,7 @@ import java.util.List;
 public class Ability {
     private String name;
     private String resourceName;
-    private int resourcePool;
+    private int resourcePool; // -1 represents infinity
     private int resourceCurrent;
     private int resourceCost;
     private AbilityCastCallback abilityCastCallback;
@@ -24,7 +24,7 @@ public class Ability {
 
     public void addToCurrent(int addition) {
         resourceCurrent += addition;
-        if(resourceCurrent > resourcePool)
+        if(resourcePool != -1 && resourceCurrent > resourcePool)
             resourceCurrent = resourcePool;
     }
 
@@ -61,6 +61,6 @@ public class Ability {
     }
 
     public String toString(){
-        return String.format("%d/%d", resourceCurrent, resourcePool);
+        return String.format("%d/%s", resourceCurrent, resourcePool == -1 ? "INF" : resourcePool);
     }
 }

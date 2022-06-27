@@ -6,6 +6,7 @@ public abstract class Unit extends Tile implements Visitor {
     protected int attack_pts;
     protected int defense_pts;
     protected MessageCallback messageCallback;
+    protected InteractCallback interactCallback;
 
     public Unit(char tile, String name, int health_pool, int attack_pts, int defense_pts)
     {
@@ -18,6 +19,10 @@ public abstract class Unit extends Tile implements Visitor {
 
     public void setMessageCallback(MessageCallback messageCallback){
         this.messageCallback = messageCallback;
+    }
+
+    public void setInteractCallback(InteractCallback interactCallback){
+        this.interactCallback = interactCallback;
     }
 
     public String getName(){
@@ -54,6 +59,10 @@ public abstract class Unit extends Tile implements Visitor {
 
     public void interact(Tile tile){
         tile.accept(this);
+    }
+
+    public void interact(int action){
+        interactCallback.interact(action);
     }
 
     public String describe(){

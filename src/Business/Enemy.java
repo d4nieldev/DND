@@ -3,7 +3,7 @@ package Business;
 public abstract class Enemy extends Unit{
     private int experienceValue;
     private DeathCallback deathCallback;
-    protected InteractCallback interactCallback;
+
 
     public Enemy(char tile, String name, int health_pool, int attack_pts, int defense_pts, int experienceValue) {
         super(tile, name, health_pool, attack_pts, defense_pts);
@@ -20,10 +20,6 @@ public abstract class Enemy extends Unit{
 
     protected Tile onDeath(){
         return deathCallback.onDeath();
-    }
-
-    public void setInteractCallback(InteractCallback interactCallback){
-        this.interactCallback = interactCallback;
     }
 
     @Override

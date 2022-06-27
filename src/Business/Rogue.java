@@ -26,9 +26,10 @@ public class Rogue extends Player{
 
     @Override
     public void abilityCastCallback(List<Enemy> enemyList) {
-        List<Enemy> enemiesToHit = enemyList.stream().filter(e -> e.position.distance(position) < 2).collect(Collectors.toList());
         messageCallback.send(String.format("%s cast %s", getName(), ability.getName()));
-        for (Enemy enemyToHit : enemiesToHit) {
+
+        List<Enemy> enemiesInRange = enemyList.stream().filter(e -> e.position.distance(position) < 2).collect(Collectors.toList());
+        for (Enemy enemyToHit : enemiesInRange) {
             int defenseRoll = enemyToHit.defend();
 
             int penetration = attack_pts - defenseRoll;

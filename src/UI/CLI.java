@@ -3,12 +3,8 @@ import Business.Player;
 import Service.GameManager;
 import Service.TileFactory;
 
-import java.io.File;
-import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.function.Consumer;
 
 public class CLI {
     public static void main(String[] args){
@@ -39,10 +35,11 @@ public class CLI {
             }
         }
 
-        // TODO: read real path from args
-        String pathToLevels = System.getProperty("user.dir") + "\\levels";
+        String pathToLevels = System.getProperty("user.dir") + "\\" + args[0];
 
         GameManager gameManager = new GameManager(playerSelection, pathToLevels);
         gameManager.playGame();
+
+
     }
 }

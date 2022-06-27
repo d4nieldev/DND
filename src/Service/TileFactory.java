@@ -48,11 +48,8 @@ public class TileFactory {
                 () -> new Mage("Melisandre", 100, 5, 1, 300, 30, 15, 5, 6),
                 () -> new Mage("Thoros of Myr", 250, 25, 4, 150, 20, 20, 3, 4),
                 () -> new Rogue("Arya Stark", 150, 40, 2, 20),
-                () -> new Rogue("Bronn", 250, 35, 3, 50)
-                /*
-                TODO: hunter bonus
+                () -> new Rogue("Bronn", 250, 35, 3, 50),
                 () -> new Hunter("Ygrditte", 220, 30, 2, 6)
-                 */
         );
     }
 
