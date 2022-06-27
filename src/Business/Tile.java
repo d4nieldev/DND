@@ -8,6 +8,11 @@ public abstract class Tile implements Visited, Comparable<Tile> {
         this.tile = tile;
     }
 
+    @Override
+    public int compareTo(Tile o){
+        return position.compareTo(o.position);
+    }
+
     public void initialize(Position position) {
         this.position = position;
     }
@@ -22,11 +27,6 @@ public abstract class Tile implements Visited, Comparable<Tile> {
 
     public int getY(){
         return position.getY();
-    }
-
-    @Override
-    public int compareTo(Tile o){
-        return position.compareTo(o.position);
     }
 
     public abstract void accept(Unit unit);

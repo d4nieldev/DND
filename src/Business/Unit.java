@@ -6,7 +6,7 @@ public abstract class Unit extends Tile implements Visitor {
     protected int attack_pts;
     protected int defense_pts;
     protected MessageCallback messageCallback;
-    protected InteractCallback interactCallback;
+    protected MoveCallback moveCallback;
 
     public Unit(char tile, String name, int health_pool, int attack_pts, int defense_pts)
     {
@@ -21,8 +21,8 @@ public abstract class Unit extends Tile implements Visitor {
         this.messageCallback = messageCallback;
     }
 
-    public void setInteractCallback(InteractCallback interactCallback){
-        this.interactCallback = interactCallback;
+    public void setInteractCallback(MoveCallback moveCallback){
+        this.moveCallback = moveCallback;
     }
 
     public String getName(){
@@ -35,7 +35,7 @@ public abstract class Unit extends Tile implements Visitor {
         return attackRoll;
     }
 
-    public int defend(){
+    protected int defend(){
         int defenseRoll = (int)(Math.random() * (defense_pts + 1));
         messageCallback.send(getName() + " rolled " + defenseRoll + " defense points.");
         return defenseRoll;
@@ -66,7 +66,7 @@ public abstract class Unit extends Tile implements Visitor {
     }
 
     public void interact(int action){
-        interactCallback.interact(action);
+        moveCallback.interact(action);
     }
 
     public String describe(){

@@ -1,5 +1,5 @@
 package Business;
 
-public interface InteractCallback {
+public interface MoveCallback {
     void interact(int action);
 }

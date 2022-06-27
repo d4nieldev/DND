@@ -60,6 +60,9 @@ public class LevelManager {
             else if (playerMove == 'e')
                 // cast special ability
                 player.abilityCast(board.getEnemyList());
+            else if (playerMove == 'q')
+                // do nothing
+                player.onGameTick();
 
             for (Enemy e : board.getEnemyList())
                 e.processStep(player);

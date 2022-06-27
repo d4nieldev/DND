@@ -21,6 +21,7 @@ public class Trap extends Enemy{
             ticksCount = 0;
         else
             ticksCount ++;
+        
         if(this.position.distance(player.position) < 2)
             battle(player);
     }

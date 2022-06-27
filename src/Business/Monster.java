@@ -33,7 +33,7 @@ public class Monster extends Enemy{
         else
             movement = (int)(Math.random() * 4);
 
-        interactCallback.interact(movement);
+        moveCallback.interact(movement);
     }
 
     @Override

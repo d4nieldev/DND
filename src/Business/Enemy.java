@@ -1,25 +1,13 @@
 package Business;
 
 public abstract class Enemy extends Unit{
-    private int experienceValue;
+    private final int experienceValue;
     private DeathCallback deathCallback;
 
 
     public Enemy(char tile, String name, int health_pool, int attack_pts, int defense_pts, int experienceValue) {
         super(tile, name, health_pool, attack_pts, defense_pts);
         this.experienceValue = experienceValue;
-    }
-
-    public void setDeathCallback(DeathCallback deathCallback) {
-        this.deathCallback = deathCallback;
-    }
-
-    public int getExperienceValue(){
-        return this.experienceValue;
-    }
-
-    protected Tile onDeath(){
-        return deathCallback.onDeath();
     }
 
     @Override
@@ -34,6 +22,18 @@ public abstract class Enemy extends Unit{
 
     @Override
     public void visit(Enemy enemy) { }
+
+    public void setDeathCallback(DeathCallback deathCallback) {
+        this.deathCallback = deathCallback;
+    }
+
+    public int getExperienceValue(){
+        return this.experienceValue;
+    }
+
+    protected Tile onDeath(){
+        return deathCallback.onDeath();
+    }
 
     public abstract void processStep(Player player);
 }
