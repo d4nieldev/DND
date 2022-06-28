@@ -19,7 +19,7 @@ public class Warrior extends Player{
 
         List<Enemy> enemiesInRange = enemyList.stream().filter(e -> e.position.distance(position) < 3).collect(Collectors.toList());
         if(!enemiesInRange.isEmpty()) {
-            Enemy enemyToHit = enemiesInRange.get((int) (Math.random() * enemiesInRange.size()));
+            Enemy enemyToHit = enemiesInRange.get(generator.nextInt(enemiesInRange.size()));
 
             int defenseRoll = enemyToHit.defend();
 

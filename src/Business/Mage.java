@@ -29,7 +29,7 @@ public class Mage extends Player {
         int hits = 0;
         List<Enemy> enemiesInRange = enemyList.stream().filter(e -> e.position.distance(position) < abilityRange).collect(Collectors.toList());
         while (hits < hitsCount && enemiesInRange.size() > 0){
-            Enemy enemyToHit = enemiesInRange.get((int) (Math.random() * enemiesInRange.size()));
+            Enemy enemyToHit = enemiesInRange.get(generator.nextInt(enemiesInRange.size()));
 
             int defenseRoll = enemyToHit.defend();
 

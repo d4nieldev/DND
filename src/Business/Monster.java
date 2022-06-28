@@ -31,7 +31,7 @@ public class Monster extends Enemy{
                     movement = 1;
         }
         else
-            movement = (int)(Math.random() * 4);
+            movement = generator.nextInt(4);
 
         moveCallback.interact(movement);
     }

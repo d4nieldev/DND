@@ -1,5 +1,7 @@
 package Business;
 
+import java.util.Random;
+
 public abstract class Unit extends Tile implements Visitor {
     protected String name;
     protected Health health;
@@ -7,6 +9,7 @@ public abstract class Unit extends Tile implements Visitor {
     protected int defense_pts;
     protected MessageCallback messageCallback;
     protected MoveCallback moveCallback;
+    protected Random generator;
 
     public Unit(char tile, String name, int health_pool, int attack_pts, int defense_pts)
     {
@@ -15,6 +18,7 @@ public abstract class Unit extends Tile implements Visitor {
         this.health = new Health(health_pool);
         this.attack_pts = attack_pts;
         this.defense_pts = defense_pts;
+        this.generator = new Random(7);
     }
 
     public void setMessageCallback(MessageCallback messageCallback){
@@ -25,18 +29,22 @@ public abstract class Unit extends Tile implements Visitor {
         this.moveCallback = moveCallback;
     }
 
+    public void setRandomSeed(int seed){
+        this.generator = new Random(seed);
+    }
+
     public String getName(){
         return this.name;
     }
 
     protected int attack(){
-        int attackRoll = (int)(Math.random() * (attack_pts + 1));
+        int attackRoll = generator.nextInt(attack_pts + 1);
         messageCallback.send(getName() + " rolled " + attackRoll + " attack points.");
         return attackRoll;
     }
 
     protected int defend(){
-        int defenseRoll = (int)(Math.random() * (defense_pts + 1));
+        int defenseRoll = generator.nextInt(defense_pts + 1);
         messageCallback.send(getName() + " rolled " + defenseRoll + " defense points.");
         return defenseRoll;
     }
