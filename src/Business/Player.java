@@ -72,7 +72,7 @@ public abstract class Player extends Unit{
 
     protected void addExperience(int addition){
         this.experience += addition;
-        if(this.experience >= this.level * 50)
+        while(this.experience >= this.level * 50)
             levelUp();
     }
 

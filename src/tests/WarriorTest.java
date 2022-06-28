@@ -147,11 +147,11 @@ class WarriorTest {
         monster.initialize(new Position(1, 0));
         monster.setRandomSeed(seed);
 
-        int warriorExperienceBeforeKilling = testWarrior.getExperience();
+        int warriorExperienceBeforeAttacking = testWarrior.getExperience();
         testWarrior.interact(monster);
-        int warriorExperienceAfterKilling = testWarrior.getExperience();
+        int warriorExperienceAfterAttacking = testWarrior.getExperience();
 
-        Assertions.assertEquals(warriorExperienceAfterKilling, warriorExperienceBeforeKilling);
+        Assertions.assertEquals(warriorExperienceAfterAttacking, warriorExperienceBeforeAttacking);
     }
 
     @Test
@@ -163,11 +163,11 @@ class WarriorTest {
         List<Enemy> enemyList = new ArrayList<>();
         enemyList.add(monster);
 
-        int warriorExperienceBeforeKilling = testWarrior.getExperience();
+        int warriorExperienceBeforeAttacking = testWarrior.getExperience();
         testWarrior.abilityCast(enemyList);
-        int warriorExperienceAfterKilling = testWarrior.getExperience();
+        int warriorExperienceAfterAttacking = testWarrior.getExperience();
 
-        Assertions.assertEquals(warriorExperienceAfterKilling, warriorExperienceBeforeKilling);
+        Assertions.assertEquals(warriorExperienceAfterAttacking, warriorExperienceBeforeAttacking);
     }
 
     // Ability tests
@@ -280,5 +280,70 @@ class WarriorTest {
 
         // enemy health should be damaged
         Assertions.assertTrue(enemyHealthAfterSecondAbilityCast < enemyHealthBeforeSecondAbilityCast);
+    }
+
+    // Level up tests
+    @Test
+    void testLevelUpStatsAsExpected(){
+        Enemy enemyInRange = new Monster('t', "Test Monster", 1, 50, 0, 70, 0);
+        enemyInRange.initialize(new Position(1, 0));
+        enemyInRange.setRandomSeed(seed);
+
+        enemyInRange.interact(testWarrior); // damage warrior
+
+        List<Enemy> enemyList = new ArrayList<>();
+        enemyList.add(enemyInRange);
+
+        // basic level up
+        int experienceBeforeLevelingUp = testWarrior.getExperience();
+        int levelBeforeLevelingUp = testWarrior.getLevel();
+        int healthPoolBeforeLevelingUp = testWarrior.getHealth().getPool();
+        int currentHealthBeforeLevelingUp = testWarrior.getHealth().getAmount();
+        int attackPtsBeforeLevelingUp = testWarrior.getAttack_pts();
+        int defensePtsBeforeLevelingUp = testWarrior.getDefense_pts();
+
+        testWarrior.abilityCast(enemyList); // should level up from this and empty cooldown
+
+        int experienceAfterLevelingUp = testWarrior.getExperience();
+        int levelAfterLevelingUp = testWarrior.getLevel();
+        int healthPoolAfterLevelingUp = testWarrior.getHealth().getPool();
+        int currentHealthAfterLevelingUp = testWarrior.getHealth().getAmount();
+        int attackPtsAfterLevelingUp = testWarrior.getAttack_pts();
+        int defensePtsAfterLevelingUp = testWarrior.getDefense_pts();
+
+        // warrior unique bonuses
+        int cooldownAfterLevelingUp = testWarrior.getAbility().getResourceCurrent();
+
+        Assertions.assertEquals(levelAfterLevelingUp, 2);
+        Assertions.assertEquals(experienceAfterLevelingUp, experienceBeforeLevelingUp + 20);
+        Assertions.assertEquals(healthPoolAfterLevelingUp, healthPoolBeforeLevelingUp + 10 * levelAfterLevelingUp + 5 * levelAfterLevelingUp);
+        Assertions.assertEquals(currentHealthAfterLevelingUp, healthPoolAfterLevelingUp);
+        Assertions.assertEquals(attackPtsAfterLevelingUp, attackPtsBeforeLevelingUp + 4 * levelAfterLevelingUp + 2 * levelAfterLevelingUp);
+        Assertions.assertEquals(defensePtsAfterLevelingUp, defensePtsBeforeLevelingUp + levelAfterLevelingUp + levelAfterLevelingUp);
+        Assertions.assertEquals(cooldownAfterLevelingUp, 3);
+    }
+
+    @Test
+    void testLevelUpTwiceStatsAsExpected(){
+        Enemy enemyInRange = new Monster('t', "Test Monster", 1, 50, 0, 250, 0);
+        enemyInRange.initialize(new Position(1, 0));
+        enemyInRange.setRandomSeed(seed);
+
+        enemyInRange.interact(testWarrior); // damage warrior
+
+        List<Enemy> enemyList = new ArrayList<>();
+        enemyList.add(enemyInRange);
+
+        // warrior unique bonuses
+        int cooldownBeforeLevelingUp = testWarrior.getAbility().getResourceCurrent();
+
+        testWarrior.abilityCast(enemyList); // should level up TWICE from this and empty cooldown
+
+        int experienceAfterLevelingUp = testWarrior.getExperience();
+        int levelAfterLevelingUp = testWarrior.getLevel();
+
+        Assertions.assertEquals(levelAfterLevelingUp, 3);
+        Assertions.assertEquals(experienceAfterLevelingUp, 100);
+
     }
 }

@@ -42,6 +42,14 @@ public abstract class Unit extends Tile implements Visitor {
         return this.health;
     }
 
+    public int getAttack_pts(){
+        return this.attack_pts;
+    }
+
+    public int getDefense_pts(){
+        return this.defense_pts;
+    }
+
     protected int attack(){
         int attackRoll = generator.nextInt(attack_pts + 1);
         messageCallback.send(getName() + " rolled " + attackRoll + " attack points.");
