@@ -8,6 +8,7 @@ public abstract class Enemy extends Unit{
     public Enemy(char tile, String name, int health_pool, int attack_pts, int defense_pts, int experienceValue) {
         super(tile, name, health_pool, attack_pts, defense_pts);
         this.experienceValue = experienceValue;
+        // default death callback - used for tests. When an enemy is created he is using different bound to board death callback
         this.deathCallback = () -> {
             EmptyTile emptyTile = new EmptyTile();
             emptyTile.initialize(position);

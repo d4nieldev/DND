@@ -38,6 +38,7 @@ public class CLI {
         String pathToLevels = System.getProperty("user.dir") + "\\" + args[0];
 
         GameManager gameManager = new GameManager(playerSelection, pathToLevels);
+        gameManager.setMessageCallback(System.out::println);
         gameManager.playGame();
 
 

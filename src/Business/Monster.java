@@ -33,7 +33,7 @@ public class Monster extends Enemy{
         else
             movement = generator.nextInt(4);
 
-        moveCallback.interact(movement);
+        moveCallback.move(movement);
     }
 
     @Override

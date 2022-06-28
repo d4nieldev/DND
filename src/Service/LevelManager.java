@@ -17,7 +17,7 @@ public class LevelManager {
     public void initialize(Player player){
         this.player = player;
         player.initialize(initialPlayerPosition);
-        player.setInteractCallback(action -> {
+        player.setMoveCallback(action -> {
             switch (action) {
                 case (0) ->
                         // interact up

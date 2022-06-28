@@ -21,7 +21,7 @@ public class Board {
         for(Enemy enemy : enemyList) {
             enemy.setDeathCallback(() -> this.tiles.get(remove(enemy)));
 
-            enemy.setInteractCallback(action -> {
+            enemy.setMoveCallback(action -> {
                 switch (action) {
                     case (0) ->
                             // interact up

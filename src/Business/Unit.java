@@ -26,7 +26,7 @@ public abstract class Unit extends Tile implements Visitor {
         this.messageCallback = messageCallback;
     }
 
-    public void setInteractCallback(MoveCallback moveCallback){
+    public void setMoveCallback(MoveCallback moveCallback){
         this.moveCallback = moveCallback;
     }
 
@@ -87,7 +87,7 @@ public abstract class Unit extends Tile implements Visitor {
     }
 
     public void interact(int action){
-        moveCallback.interact(action);
+        moveCallback.move(action);
     }
 
     public String describe(){
