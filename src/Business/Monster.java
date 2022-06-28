@@ -40,9 +40,4 @@ public class Monster extends Enemy{
 
         moveCallback.move(movement);
     }
-
-    @Override
-    public void accept(Unit u){
-        u.visit(this);
-    }
 }

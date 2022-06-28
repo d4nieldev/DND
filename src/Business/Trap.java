@@ -24,11 +24,6 @@ public class Trap extends Enemy{
     }
 
     @Override
-    public void accept(Unit u){
-        u.visit(this);
-    }
-
-    @Override
     public char getTile(){
         if (ticksCount < visibilityTime)
             return super.getTile();

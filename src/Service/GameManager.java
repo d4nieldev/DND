@@ -16,6 +16,7 @@ public class GameManager {
         player = tf.producePlayer(playerSelection);
         levelManagers = LevelParser.produceLevels(pathToLevels, player, messageCallback);
         playNextLevel = true;
+        this.messageCallback = messageCallback;
     }
 
     public void playGame(){
