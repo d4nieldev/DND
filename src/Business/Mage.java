@@ -27,16 +27,18 @@ public class Mage extends Player {
     protected void abilityCastCallback(List<Enemy> enemyList) {
         messageCallback.send(String.format("%s cast %s", getName(), ability.getName()));
         int hits = 0;
-        List<Enemy> enemiesInRange = enemyList.stream().filter(e -> e.position.distance(position) < abilityRange).collect(Collectors.toList());
-        while (hits < hitsCount && enemiesInRange.size() > 0){
-            Enemy enemyToHit = enemiesInRange.get(generator.nextInt(enemiesInRange.size()));
+        List<Enemy> aliveEnemiesInRange = enemyList.stream().filter(e -> e.position.distance(position) < abilityRange).collect(Collectors.toList());
+        while (hits < hitsCount && aliveEnemiesInRange.size() > 0){
+            Enemy enemyToHit = aliveEnemiesInRange.get(generator.nextInt(aliveEnemiesInRange.size()));
 
             int defenseRoll = enemyToHit.defend();
 
             enemyToHit.dealPureDamage(getName(), spellPower - defenseRoll, true);
 
-            if(enemyToHit.isDead())
+            if(enemyToHit.isDead()) {
                 consumeEnemy(enemyToHit);
+                aliveEnemiesInRange.remove(enemyToHit);
+            }
 
             hits++;
         }
