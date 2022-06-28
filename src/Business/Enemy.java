@@ -8,6 +8,11 @@ public abstract class Enemy extends Unit{
     public Enemy(char tile, String name, int health_pool, int attack_pts, int defense_pts, int experienceValue) {
         super(tile, name, health_pool, attack_pts, defense_pts);
         this.experienceValue = experienceValue;
+        this.deathCallback = () -> {
+            EmptyTile emptyTile = new EmptyTile();
+            emptyTile.initialize(position);
+            return emptyTile;
+        };
     }
 
     @Override

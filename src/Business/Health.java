@@ -37,4 +37,8 @@ public class Health {
     public int getPool(){
         return this.pool;
     }
+
+    public int getAmount() {
+        return this.amount;
+    }
 }

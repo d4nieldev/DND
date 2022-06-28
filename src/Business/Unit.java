@@ -18,7 +18,8 @@ public abstract class Unit extends Tile implements Visitor {
         this.health = new Health(health_pool);
         this.attack_pts = attack_pts;
         this.defense_pts = defense_pts;
-        this.generator = new Random(7);
+        this.generator = new Random();
+        this.messageCallback = message -> {};
     }
 
     public void setMessageCallback(MessageCallback messageCallback){
@@ -35,6 +36,10 @@ public abstract class Unit extends Tile implements Visitor {
 
     public String getName(){
         return this.name;
+    }
+
+    public Health getHealth(){
+        return this.health;
     }
 
     protected int attack(){

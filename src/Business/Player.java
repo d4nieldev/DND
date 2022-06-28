@@ -13,6 +13,18 @@ public abstract class Player extends Unit{
         this.level = 1;
     }
 
+    public int getExperience(){
+        return this.experience;
+    }
+
+    public int getLevel(){
+        return this.level;
+    }
+
+    public Ability getAbility(){
+        return this.ability;
+    }
+
     @Override
     public void interact(Tile tile){
         onGameTick();

@@ -32,14 +32,9 @@ public class Ability {
         addToCurrent(resourcePool);
     }
 
-    public String getName(){
-        return this.name;
+    public boolean canCastAbility(){
+        return resourceCurrent >= resourceCost;
     }
-
-    public String getResourceName() {
-        return this.resourceName;
-    }
-
 
     public void castAbility(List<Enemy> enemyList){
         if(canCastAbility()) {
@@ -48,16 +43,24 @@ public class Ability {
         }
     }
 
+    public String getName(){
+        return this.name;
+    }
+
+    public String getResourceName() {
+        return this.resourceName;
+    }
+
     public int getResourcePool(){
         return this.resourcePool;
     }
 
-    public void setResourcePool(int resourcePool){
-        this.resourcePool = resourcePool;
+    public int getResourceCurrent() {
+        return this.resourceCurrent;
     }
 
-    public boolean canCastAbility(){
-        return resourceCurrent >= resourceCost;
+    public void setResourcePool(int resourcePool){
+        this.resourcePool = resourcePool;
     }
 
     public String toString(){
