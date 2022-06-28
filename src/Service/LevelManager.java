@@ -8,6 +8,7 @@ public class LevelManager {
     private final Board board;
     private Player player;
     private final Position initialPlayerPosition;
+    private MessageCallback messageCallback;
 
     public LevelManager(Tile[][] tiles, List<Enemy> enemyList, Position initialPlayerPosition){
         this.board = new Board(tiles, enemyList);
@@ -35,6 +36,10 @@ public class LevelManager {
         });
     }
 
+    public void setMessageCallback(MessageCallback messageCallback){
+        this.messageCallback = messageCallback;
+    }
+
     private Map<Character, Integer> getPlayerMoves(){
         Map<Character, Integer> playerMoves = new HashMap<>();
         playerMoves.put('w', 0); // interact up
@@ -50,7 +55,8 @@ public class LevelManager {
 
         Scanner scanner = new Scanner(System.in);
         while (!player.isDead() && !board.getEnemyList().isEmpty()){
-            System.out.println(board);
+            messageCallback.send(board.toString());
+            messageCallback.send(player.describe());
 
             char playerMove = scanner.next().charAt(0);
 

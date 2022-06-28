@@ -9,6 +9,11 @@ public class Monster extends Enemy{
     }
 
     @Override
+    public String describe(){
+        return super.describe() + String.format("\t\tVision Range: %d", visionRange);
+    }
+
+    @Override
     public void processStep(Player player) {
         int movement; // 0 - up, 1 - down, 2 - left, 3 - right
 

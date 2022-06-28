@@ -17,6 +17,11 @@ public abstract class Enemy extends Unit{
     }
 
     @Override
+    public String describe(){
+        return super.describe() + String.format("\t\tExperience Value: %d", experienceValue);
+    }
+
+    @Override
     public void accept(Unit unit) {
         unit.visit(this);
     }

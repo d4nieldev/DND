@@ -12,8 +12,10 @@ import java.util.stream.Collectors;
 public class TileFactory {
     private List<Supplier<Player>> players;
     private Map<Character, Supplier<Enemy>> enemies;
+    private MessageCallback messageCallback;
 
-    public TileFactory(){
+    public TileFactory(MessageCallback messageCallback){
+        this.messageCallback = messageCallback;
         players = initPlayers();
         enemies = initEnemies();
     }
@@ -67,13 +69,13 @@ public class TileFactory {
 
     public Enemy produceEnemy(char tile) {
         Enemy enemy = enemies.get(tile).get();
-        enemy.setMessageCallback(System.out::println);
+        enemy.setMessageCallback(messageCallback);
         return enemy;
     }
 
     public Player producePlayer(int idx){
         Player player = players.get(idx).get();
-        player.setMessageCallback(System.out::println);
+        player.setMessageCallback(messageCallback);
         return player;
     }
 

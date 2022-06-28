@@ -16,7 +16,7 @@ public class Hunter extends Player{
 
     @Override
     public String describe(){
-        return super.describe() + String.format("\t\tRange: %s ", range);
+        return super.describe() + String.format("\t\tArrows: %d\t\tRange: %d ", ability.getResourceCurrent(), range);
     }
 
     @Override

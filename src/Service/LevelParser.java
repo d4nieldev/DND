@@ -10,8 +10,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class LevelParser {
-    public static List<LevelManager> produceLevels(String pathToLevels, Player player){
-        TileFactory tf = new TileFactory();
+    public static List<LevelManager> produceLevels(String pathToLevels, Player player, MessageCallback messageCallback){
+        TileFactory tf = new TileFactory(messageCallback);
         File levelsDir = new File(pathToLevels);
         File[] levels = levelsDir.listFiles();
         List<LevelManager> levelManagers = new ArrayList<>();

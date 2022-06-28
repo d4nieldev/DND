@@ -11,21 +11,18 @@ public class GameManager {
     private boolean playNextLevel;
     private MessageCallback messageCallback;
 
-    public GameManager(int playerSelection, String pathToLevels){
-        TileFactory tf = new TileFactory();
+    public GameManager(int playerSelection, String pathToLevels, MessageCallback messageCallback){
+        TileFactory tf = new TileFactory(messageCallback);
         player = tf.producePlayer(playerSelection);
-        levelManagers = LevelParser.produceLevels(pathToLevels, player);
+        levelManagers = LevelParser.produceLevels(pathToLevels, player, messageCallback);
         playNextLevel = true;
-    }
-
-    public void setMessageCallback(MessageCallback messageCallback){
-        this.messageCallback = messageCallback;
     }
 
     public void playGame(){
         for (LevelManager lm : levelManagers){
             if(playNextLevel) {
                 lm.initialize(player);
+                lm.setMessageCallback(messageCallback);
                 boolean playerSurvived = lm.playGame();
                 if (!playerSurvived) playNextLevel = false;
             }
