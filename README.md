@@ -17,9 +17,9 @@ In this board, the symbol '@' in green represents the player while the later red
 In addition, there are dots scattered along the paths, representing the free areas and # symbols that represent the walls. 
 <br />
 The game takes a path to a directory that containing indexed files via the command line argument (explained later). Each file represents a game level.
-<p align="center">
+
 ![image](https://user-images.githubusercontent.com/102467192/209524647-0c9ddeed-0568-4495-aa2e-b2170eef7a15.png)
-</p>
+
 # Units
 Each unit (player / enemy) has a Name, Health, Attack and Defense. Each property differs depending on the unit type.
 ## Players
