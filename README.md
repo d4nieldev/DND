@@ -19,5 +19,5 @@ In addition, there are dots scattered along the paths, representing the free are
 
 The game takes a path to a directory that containing indexed files via the command line argument (explained later). Each file represents a game level.
 
-![alt text](https://prnt.sc/euoCXFociE5G)
+<img src="https://prnt.sc/euoCXFociE5G" />
 
