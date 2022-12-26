@@ -31,18 +31,27 @@ In addition to the game unit properties, each player has the following propertie
 
 #### Player Types
 
-![image](https://user-images.githubusercontent.com/102467192/209529263-c8755c62-4dd5-44ed-b252-853cbd5a67c2.png)
-
-##### 1. Warrior
+##### 1. Warriors
 **Special ability**: *Avenger’s Shield*, randomly hits one enemy withing range < 3 for an amount equals to 10% of the warrior’s max health and heals the warrior for amount equals to 10×defense (but will not exceed the total amount of health pool). *Avenger's Shield* has a *cooldown* that is reduced by 1 every turn.
 
-##### 2. Mage
+![image](https://user-images.githubusercontent.com/102467192/209530403-59bca9e3-d189-483f-8252-ec88b61e06e9.png)
+
+##### 2. Mages
 **Special ability**: *Blizzard*, randomly hit enemies within range for an amount equals to the mage’s spell power at the cost of *mana*. The mage needs to have enough *mana* to cast *Blizzard*. The *mana* is increased every turn according to the level, and on leveling up.
 
-##### 3. Rouge
+**Hits Count**: maximal number of times a single cast of the ability can hit.
+
+![image](https://user-images.githubusercontent.com/102467192/209530514-de71bdbd-8f7f-4e92-9aa6-9bfd12accf3b.png)
+
+##### 3. Rouges
 **Special ability**: *Fan of Knives* hits everyone around the rogue for an amount equals to the rogue’s attack points at the cost of energy. The rouge needs to have enough *energy* to case *Fan of Knives*. The *energy* is increased every turn by 10, and is filled upon leveling up.
 
-##### 4. Hunter
+![image](https://user-images.githubusercontent.com/102467192/209530620-c53da040-b040-4654-9f58-81bb64a50d9e.png)
+
+##### 4. Hunters
+**Special ability**: *Shoot*, hits the closest enemy for an amount equals to the hunter’s attack points at the cost of an *arrow*. The hunter should have at lease one enemy in range and at lease one *arrow* in his quiver starting with 10. every 10 turns the hunter gains additional arrows depending on his level.
+
+![image](https://user-images.githubusercontent.com/102467192/209530277-cab099a8-6300-4912-be68-5fa505f65b74.png)
 
 ### Enemies
 The player may encounter enemies while traveling around the world. Each enemy has a property of *Experience Value* which is the amount of experience gained by defeating this enemy.
@@ -50,20 +59,20 @@ The player may encounter enemies while traveling around the world. Each enemy ha
 #### Enemy Types
 
 ##### 1. Monsters
-![image](https://user-images.githubusercontent.com/102467192/209529346-abd22410-6bb0-44fe-99ff-a100a2573b2b.png)
-
 Each monster has a **vision range** that represents the monster’s vision range.
 <br />
 The monster will travel around the board. Monsters can move 1 step in one the following directions: Up/Down/Left/Right, and may chase the player if the player is within its *vision range*.
 
-##### 2. Traps
-![image](https://user-images.githubusercontent.com/102467192/209529430-5a50d074-2b69-4361-88eb-cfd830348ade.png)
+![image](https://user-images.githubusercontent.com/102467192/209529346-abd22410-6bb0-44fe-99ff-a100a2573b2b.png)
 
+##### 2. Traps
 Each trap has the following properties:
 * **visibility time**: amount of turns that the trap remains visible.
 * **invisibility time**: amount of turns that the trap remains invisible.
 
 A trap can’t move (unlike monsters) but updates its state on each turn. After *visibility time* turns, the trap will become invisible. The trap becomes visible again after *invisibility time* turns elapsed. The trap may attack the player if the player is within a range of 2 from it.
+
+![image](https://user-images.githubusercontent.com/102467192/209529430-5a50d074-2b69-4361-88eb-cfd830348ade.png)
 
 ## Combat System
 When the player attempts to step on a location that has an enemy, or when an enemy attempts to step on the player’s location, they engage in melee combat.
@@ -72,10 +81,12 @@ The attacker is always the unit that performed the step. The other unit will att
 # How to play
 The game starts by asking the user to select the player character from a list of pre-defined characters. After choosing a character, the game will start.
 A may use the following actions:
+
 ![image](https://user-images.githubusercontent.com/102467192/209528815-5815c438-5014-4090-9dba-b67b22a66fe3.png)
 
 # Configuration
 The program takes a path of directory as command-line argument. The directory contains files represent the game boards. Each file is named "level<i>.txt" where <i> is the number of the level (For example: "level1.txt", "level2.txt" etc. Also, see the example levels attached).
 
 We will use the following tiles:
+  
 ![image](https://user-images.githubusercontent.com/102467192/209529137-932fe979-73c0-45e4-98d5-8a0e9e4dafa5.png)
