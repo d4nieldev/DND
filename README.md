@@ -28,9 +28,7 @@ In addition to the game unit properties, each player has the following propertie
 * **Player Level**: Initially 1. Increased by gaining experience.
 * **Special Ability**: each player type has a different special ability. Will be explained later.
 ### Player Types
-#### Warrior
-**Special ability**: *Avenger’s Shield*, randomly hits one enemy withing range < 3 for an amount equals to 10% of the warrior’s max health and heals the warrior for amount equals to 10×defense (but will not exceed the total amount of health pool).
-<br />
-The warrior’s ability has a *cooldown*, meaning it can only be used once every ability cooldown game ticks.
-
+__Warrior__
+**Special ability**: *Avenger’s Shield*, randomly hits one enemy withing range < 3 for an amount equals to 10% of the warrior’s max health and heals the warrior for amount equals to 10×defense (but will not exceed the total amount of health pool). The warrior’s ability has a *cooldown* that is reduced by 1 every turn.
+__Mage__
 
