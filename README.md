@@ -21,3 +21,17 @@ The game takes a path to a directory that containing indexed files via the comma
 
 ![image](https://user-images.githubusercontent.com/102467192/209524647-0c9ddeed-0568-4495-aa2e-b2170eef7a15.png)
 
+## Units
+Each unit (player / enemy) has a Name, Health, Attack and Defense. Each property differs depending on the unit type.
+### Players
+In addition to the game unit properties, each player has the following properties:
+* **Experience**: Initially 0. Increased by killing enemies.
+* **Player Level**: Initially 1. Increased by gaining experience.
+* **Special Ability**: each player type has a different special ability. Will be explained later.
+#### Player Types
+##### Warrior
+Special ability: **Avenger’s Shield**, randomly hits one enemy withing range < 3 for an amount
+equals to 10% of the warrior’s max health and heals the warrior for amount equals to (10×def ense)
+(but will not exceed the total amount of health pool).
+
+
