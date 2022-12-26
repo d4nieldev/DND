@@ -1,11 +1,7 @@
-# About
+# Introduction
 This game is asingle-player multi-level version of a dungeons and dragons board game.
 <br />
-You are trapped in a dungeon, surrounded by enemies. 
-<br />
-Your goal is to fight your way through them and get to the next level of the dungeon. 
-<br />
-Once you complete all the levels, you win the game.
+You are trapped in a dungeon, surrounded by enemies. Your goal is to fight your way through them and get to the next level of the dungeon. Once you complete all the levels, you win the game.
 
 # Game Description
 The game is played on a board similar to the board in Figure 1. 
