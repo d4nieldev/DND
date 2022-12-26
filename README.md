@@ -78,19 +78,18 @@ A trap can’t move (unlike monsters) but updates its state on each turn. After 
 When the player attempts to step on a location that has an enemy, or when an enemy attempts to step on the player’s location, they engage in melee combat.
 The attacker is always the unit that performed the step. The other unit will attempt to defend itself.
 
-# How to play
+# How to Play
+The program takes a path of directory as command-line argument. The directory contains files represent the game boards. Each file is named "level\<i\>.txt" where \<i\> is the number of the level (For example: "level1.txt", "level2.txt", etc... Also, see the levels directory in the repo).
+
+We will use the following tiles for each level:
+  
+![image](https://user-images.githubusercontent.com/102467192/209529137-932fe979-73c0-45e4-98d5-8a0e9e4dafa5.png)
+  
+And enemy tiles of your choice.
+
 The game starts by asking the user to select the player character from a list of pre-defined characters. After choosing a character, the game will start.
 A may use the following actions:
 
 ![image](https://user-images.githubusercontent.com/102467192/209528815-5815c438-5014-4090-9dba-b67b22a66fe3.png)
 
-# Configuration
-The program takes a path of directory as command-line argument. The directory contains files represent the game boards. Each file is named 'level\<i\>.txt' where \<i\> is the number of the level (For example: 'level1.txt', 'level2.txt' etc... Also, see the example levels attached).
-
-We will use the following tiles:
-  
-![image](https://user-images.githubusercontent.com/102467192/209529137-932fe979-73c0-45e4-98d5-8a0e9e4dafa5.png)
-  
-And enemy tiles of your choice.
-  
 # Have fun!
