@@ -85,7 +85,7 @@ A may use the following actions:
 ![image](https://user-images.githubusercontent.com/102467192/209528815-5815c438-5014-4090-9dba-b67b22a66fe3.png)
 
 # Configuration
-The program takes a path of directory as command-line argument. The directory contains files represent the game boards. Each file is named "level<i>.txt" where <i> is the number of the level (For example: "level1.txt", "level2.txt" etc. Also, see the example levels attached).
+The program takes a path of directory as command-line argument. The directory contains files represent the game boards. Each file is named 'level\<i\>.txt' where \<i\> is the number of the level (For example: 'level1.txt', 'level2.txt' etc... Also, see the example levels attached).
 
 We will use the following tiles:
   
