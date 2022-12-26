@@ -90,3 +90,7 @@ The program takes a path of directory as command-line argument. The directory co
 We will use the following tiles:
   
 ![image](https://user-images.githubusercontent.com/102467192/209529137-932fe979-73c0-45e4-98d5-8a0e9e4dafa5.png)
+  
+And enemy tiles of your choice.
+  
+# Have fun!
